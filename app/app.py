@@ -6,9 +6,9 @@ import cv2
 from base64 import b64decode, b64encode
 from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
+import tensorflow as tf
 from tensorflow import keras
 
-model = tensorflow.keras.models.load_model('Model/keras_model.h5')
 
 app = Flask(__name__)
 
