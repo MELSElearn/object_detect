@@ -9,7 +9,8 @@ from pyzbar.pyzbar import decode
 import tensorflow as tf
 from tensorflow import keras
 
-model = tf.keras.models.load_model('app/keras_model.h5')
+#model = tf.keras.models.load_model('app/keras_model.h5')
+model = tf.keras.models.load_model('./app/my_model.h5', compile=False)
 
 app = Flask(__name__)
 
