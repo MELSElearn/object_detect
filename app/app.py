@@ -8,9 +8,10 @@ from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
 import tensorflow as tf
 from tensorflow import keras
+from keras.models import load_model
 
 #model = tf.keras.models.load_model('app/keras_model.h5')
-model = tf.keras.models.load_model('./app/my_model.h5', compile=False)
+#model = tf.keras.models.load_model('./app/my_model.h5', compile=False)
 
 app = Flask(__name__)
 
