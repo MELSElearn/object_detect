@@ -24,7 +24,7 @@ def check_answer():
     encoded_data = b64decode(encoded_data)
     nparr = np.frombuffer(encoded_data, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    myClassifier = Classifier('keras_model.h5','labels.txt')
+    
     crop_img = img[15:165, 45:195]
     webaddress =""
     decodedObjects = decode(crop_img)
