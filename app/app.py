@@ -57,6 +57,8 @@ class Classifier:
 
         return list(prediction[0]), indexVal
 
+maskClassifier = Classifier('app/keras_model.h5', 'app/labels.txt')
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
