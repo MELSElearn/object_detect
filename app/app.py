@@ -1,3 +1,5 @@
+import os
+import sys
 from flask import Flask, render_template, request
 import numpy as np
 import cv2
@@ -6,7 +8,7 @@ from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
 from tensorflow import keras
 
-model = keras.models.load_model('static/keras_model.h5')
+model = keras.models.load_model('Model/keras_model.h5')
 
 app = Flask(__name__)
 
