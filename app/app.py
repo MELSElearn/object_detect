@@ -1,3 +1,5 @@
+import os
+import sys
 from flask import Flask, render_template, request
 import numpy as np
 import cv2
@@ -7,7 +9,7 @@ from pyzbar.pyzbar import decode
 import tensorflow as tf
 from tensorflow import keras
 
-model = tf.keras.models.load_model('Model/keras_model.h5')
+
 
 app = Flask(__name__)
 
