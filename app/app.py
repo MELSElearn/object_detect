@@ -9,7 +9,7 @@ from pyzbar.pyzbar import decode
 import tensorflow as tf
 from tensorflow import keras
 
-
+model = tf.keras.models.load_model('app/keras_model.h5')
 #model = tf.keras.models.load_model('./app/my_model.h5', compile=False)
 
 app = Flask(__name__)
@@ -30,7 +30,7 @@ def check_answer():
     encoded_data = b64decode(encoded_data)
     nparr = np.frombuffer(encoded_data, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    model = tf.keras.models.load_model('app/keras_model.h5')
+    
     crop_img = img[15:165, 45:195]
     webaddress =""
     decodedObjects = decode(crop_img)
