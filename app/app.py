@@ -4,6 +4,7 @@ import cv2
 from base64 import b64decode, b64encode
 from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
+from cvzone.ClassificationModule import Classifier
 
 app = Flask(__name__)
 
@@ -23,6 +24,7 @@ def check_answer():
     encoded_data = b64decode(encoded_data)
     nparr = np.frombuffer(encoded_data, np.uint8)
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+    myClassifier = Classifier('keras_model.h5','labels.txt')
     crop_img = img[15:165, 45:195]
     webaddress =""
     decodedObjects = decode(crop_img)
