@@ -4,7 +4,7 @@ import cv2
 from base64 import b64decode, b64encode
 from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
-
+from cvzone.ClassificationModule import Classifier
 
 app = Flask(__name__)
 
