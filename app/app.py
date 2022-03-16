@@ -6,6 +6,8 @@ from cvzone.HandTrackingModule import HandDetector
 from pyzbar.pyzbar import decode
 from tensorflow import keras
 
+model = keras.models.load_model('static/keras_model.h5')
+
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
