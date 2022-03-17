@@ -81,7 +81,7 @@ def check_answer():
     crop_img = img[15:165, 45:195]
     items =['A','B','NA']
     
-    prediction,index = myClassifier.getPrediction(crop_img, scale=1, draw= False) 
+    prediction,index = maskClassifier.getPrediction(crop_img, scale=1, draw= False) 
     
     cv2.putText(crop_img, str(items[index]), (50, 50), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,0), 1)
         
