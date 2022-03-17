@@ -30,15 +30,13 @@
 .video-responsive{
     overflow:hidden;
     padding-bottom:56.25%;
-    position:relative;
     height:0;
 }
 .video-responsive iframe{
     left:0;
     top:0;
-    height:80%;
-    width:80%;
-    position:absolute;
+    height:315;
+    width:420;
 }
 </style>
 </head>
@@ -48,7 +46,7 @@
 <form method = "POST" id = "myForm">
 <table>
 <Tr>
-<td><div id="container"><video autoplay="true" id="videoElement"></video></div></td>
+<td><div id="container"><video autoplay id="videoElement"></video></div></td>
 <tr>
 </table>
 <input type="button" name="butajax2" id="butajax2" value="Scan Qrcode">
@@ -93,14 +91,16 @@ click_button3.addEventListener('click', function() {
 });
 </script>
 <input type="hidden" name="txt64" id="txt64">
-<img src="data:image/jpeg;base64,{{ user_image }}" alt="User Image" width="240" id="mypic">
+<!--<img src="data:image/jpeg;base64,{{ user_image }}" alt="User Image" width="240" id="mypic">-->
 
 </form>
+<center>
 <div id="tab_yt" style="display:block">
     	<div class="video-responsive">
             <iframe width="420" height="315" src="https://www.youtube.com/embed/Cw12PDfFXxc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         </div>
 </div>
+</center>
 </center>	
 </body>
 </html>
