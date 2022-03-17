@@ -81,10 +81,17 @@ click_button3.addEventListener('click', function() {
 		  todo:image_data_url
 		},
 		success: function(data) {
-			alert(data);
+			//alert(data);
 			//https://www.youtube.com/embed/Cw12PDfFXxc - A
 			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
 			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
+			if (data=="A")
+			{
+				document.getElementById("typlayer").src="https://www.youtube.com/embed/Cw12PDfFXxc"
+			}else if(data=="B")
+			{
+				document.getElementById("typlayer").src="https://www.youtube.com/embed/0A-ZEDl4zGo"
+			}
 		}
 	       });
 
@@ -97,7 +104,7 @@ click_button3.addEventListener('click', function() {
 <center>
 <div id="tab_yt" style="display:block">
     	<div class="video-responsive">
-            <iframe width="420" height="315" src="https://www.youtube.com/embed/Cw12PDfFXxc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+            <iframe id="typlayer" width="420" height="315" src="https://www.youtube.com/embed/Cw12PDfFXxc" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
         </div>
 </div>
 </center>
