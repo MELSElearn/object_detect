@@ -88,4 +88,4 @@ def check_answer():
     _, im_arr = cv2.imencode('.png', crop_img)
     im_bytes = im_arr.tobytes()
     im_b64 = b64encode(im_bytes).decode("utf-8")
-    return im_b64
+    return str(items[index])
