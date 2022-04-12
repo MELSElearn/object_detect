@@ -11,6 +11,12 @@
 	height: 180px;
 	border: 10px #333 solid;
 }
+#container2 {
+	margin: 0px auto;
+	width: 240px;
+	height: 180px;
+	border: 10px #333 solid;
+}
 #videoElement {
 	width: 240px;
 	height: 180px;
@@ -24,6 +30,15 @@
     margin-left: 45px;
 	margin-top: 15px;
     border: 2px #333 solid;
+}
+#container2:before {
+    position: absolute;
+    content:"";
+    height: 150px;
+    width: 150px;
+    margin-left: 45px;
+	margin-top: 15px;
+    border: 2px #FF0000 solid;
 }
 table.a {
   font-style: normal;
@@ -70,7 +85,10 @@ table.a {
 <table>
   
 <Tr>
-<td><div id="container"><video autoplay id="videoElement"></video></div></td>
+<td>
+<div id="container" style="display:block"><video autoplay id="videoElement"></video></div>
+<div id="container2" style="display:none"><canvas id="canvas" width="240" height="180"></canvas></div>
+</td>
 </tr>
 </table>
 <input type="button" name="butajax2" id="butajax2" value="Scan And Play">
@@ -78,7 +96,7 @@ table.a {
 <br>
 </div>
 
-<canvas id="canvas" width="240" height="180" style="display:none"></canvas>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>
 var video = document.querySelector("#videoElement");
@@ -110,7 +128,6 @@ cancel_but.addEventListener('click', function()
 	}
 )
 click_button3.addEventListener('click', function() {
-	
 	canvas.style.display="block";
    	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 	let image_data_url = canvas.toDataURL('image/jpeg');
@@ -121,6 +138,7 @@ click_button3.addEventListener('click', function() {
 		  todo:image_data_url
 		},
 		success: function(data) {
+			
 			//https://www.youtube.com/embed/Cw12PDfFXxc - A
 			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
 			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
@@ -128,6 +146,9 @@ click_button3.addEventListener('click', function() {
 			{
 				videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
 				videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
@@ -138,6 +159,9 @@ click_button3.addEventListener('click', function() {
 			{
 				videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
 				videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
@@ -148,6 +172,9 @@ click_button3.addEventListener('click', function() {
 			{
 				videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
 				videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
@@ -176,7 +203,83 @@ function showscan()
 {
 	document.getElementById("scanpart").style.display = "block";
 	document.getElementById("contentpart").style.display = "none";
+	document.getElementById("container").style.display = "block";
+	document.getElementById("container2").style.display = "none";
+	const myInterval = setInterval(myTimer, 5000);
 }
+
+
+
+function myTimer() {
+  
+  canvas.style.display="block";
+   	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+	let image_data_url = canvas.toDataURL('image/jpeg');
+	canvas.style.display="none";
+	$.ajax({type:'POST',
+		url: '/api/checkanswer',
+		data:{
+		  todo:image_data_url
+		},
+		success: function(data) {
+			
+			//https://www.youtube.com/embed/Cw12PDfFXxc - A
+			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
+			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
+			if (data=="M2_1")
+			{
+				videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
+				videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
+				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+				document.getElementById("scanpart").style.display = "none";
+				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Golden Beach";
+				document.getElementById('subtitle1').innerHTML="The frog";
+				document.getElementById('subtitle2').innerHTML="The frogs are leaping";
+				myStopFunction();
+			}else if(data=="M7_2")
+			{
+				videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
+				videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
+				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+				document.getElementById("scanpart").style.display = "none";
+				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Garden";
+				document.getElementById('subtitle1').innerHTML="The maple leaf";
+				document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
+				myStopFunction();
+			}else if(data=="M8_2")
+			{
+				videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
+				videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				
+				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+				document.getElementById("scanpart").style.display = "none";
+				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Performance";
+				document.getElementById('subtitle1').innerHTML="Maracas";
+				document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
+				myStopFunction();
+			}else
+			{
+				console.log("Item not recognised, please scan another item.");
+			}
+		}
+	});
+}
+
+function myStopFunction() {
+  clearInterval(myInterval);
+}
+
 </script>
 <input type="hidden" name="txt64" id="txt64">
 <!--<img src="data:image/jpeg;base64,{{ user_image }}" alt="User Image" width="240" id="mypic">-->
@@ -185,10 +288,15 @@ function showscan()
 
 
 <div id="contentpart" style="display:block">
-<table width="420" class="a">
-<tr align="center"><td>Back</td><td colspan="2"><font size="+2" color="#FF0000" ><span id="title">At The Seaside</span></font></td><td><a href="javascript:showscan();">Scan</a></td></tr>
-<tr align="center"><td colspan="2"><a href="javascript:showstory();">Story</a></td><td colspan="2"><a href="javascript:showtoys();">Toys</a></td></tr>
-<tr align="center"><td colspan="2"><span id="subtitle1">Save the fish</span></td><td colspan="2"><span id="subtitle2">Press the clay on to the fish mold</span></td></tr>
+<table class="a" border="0">
+<tr><td colspan="4">
+<table width="100%">
+<tr align="center"><td width="25%">Back</td><td colspan="2"><font size="+2" color="#FF0000" ><b><span id="title">At The Seaside</span></b></font></td><td  width="25%"><a href="javascript:showscan();">Scan</a></td></tr>
+
+</table>
+</td></tr>
+<tr align="center"><td width="48%"><a href="javascript:showstory();">Story</a></td><td width="4%" colspan="2" align="center">|</td><td width="48%"><a href="javascript:showtoys();">Toy</a></td></tr>
+<tr align="center" valign="top"><td width="48%"><span id="subtitle1">Save the fish</span></td><td width="4%" colspan="2"></td><td width="48%"><span id="subtitle2">Press the clay on to the fish mold</span></td></tr>
 </table>
 <div id="tab_yt" style="display:block">
     	<div class="video-responsive">
