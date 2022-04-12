@@ -64,23 +64,6 @@ table.a {
 <body>
 <center>
 <form method = "POST" id = "myForm">
-<!--	
- <input type="radio" id="box" name="selectype" value="Phonics">
-	      <label for="html">Phonics</label><br>
-	      <input type="radio" id="css" name="selectype" value="FCD">
-	      <label for="css">FCD</label><br>
-	      <input type="submit">
-<br />
-<table>
-  
-<Tr>
-<td><input type="radio" id="Story" name="contenttype" value="Story">
-	      <label for="html">Story</label><br>
-	      <input type="radio" id="Toys" name="contenttype" value="Toys">
-	      <label for="css">Toys</label><br></td>
-</tr>
-</table>
- -->
 <div id="scanpart" style="display:none">
 <table>
   
@@ -148,6 +131,7 @@ click_button3.addEventListener('click', function() {
 			{
 			}else
 			{
+				alert(data);
 				document.getElementById("container").style.display = "none";
 				document.getElementById("container2").style.display = "block";
 				var timeleft = 3;
