@@ -121,7 +121,7 @@ click_button3.addEventListener('click', function() {
 		  todo:image_data_url
 		},
 		success: function(data) {
-			//alert(data);
+			alert(data);
 			//https://www.youtube.com/embed/Cw12PDfFXxc - A
 			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
 			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
@@ -132,6 +132,9 @@ click_button3.addEventListener('click', function() {
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Golden Beach";
+				document.getElementById('subtitle1').innerHTML="The frog";
+				document.getElementById('subtitle2').innerHTML="The frogs are leaping";
 			}else if(data=="M7_2")
 			{
 				videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
@@ -139,6 +142,9 @@ click_button3.addEventListener('click', function() {
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Garden";
+				document.getElementById('subtitle1').innerHTML="The maple leaf";
+				document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
 			}else if(data=="M8_2")
 			{
 				videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
@@ -146,6 +152,9 @@ click_button3.addEventListener('click', function() {
 				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
 				document.getElementById("scanpart").style.display = "none";
 				document.getElementById("contentpart").style.display = "block";
+				document.getElementById('title').innerHTML="The Performance";
+				document.getElementById('subtitle1').innerHTML="Maracas";
+				document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
 			}else
 			{
 				alert("Item not recognised, please scan another item.");
@@ -178,9 +187,9 @@ function showscan()
 
 <div id="contentpart" style="display:block">
 <table width="420" class="a">
-<tr align="center"><td>Back</td><td colspan="2"><font size="+2" color="#FF0000" >Title</font></td><td><a href="javascript:showscan();">Scan</a></td></tr>
+<tr align="center"><td>Back</td><td colspan="2"><font size="+2" color="#FF0000" ><span id="title">At The Seaside</span></font></td><td><a href="javascript:showscan();">Scan</a></td></tr>
 <tr align="center"><td colspan="2"><a href="javascript:showstory();">Story</a></td><td colspan="2"><a href="javascript:showtoys();">Toys</a></td></tr>
-<tr align="center"><td colspan="2">Subtitle 1</td><td colspan="2">Subtitle 2</td></tr>
+<tr align="center"><td colspan="2"><span id="subtitle1">Save the fish</span></td><td colspan="2"><span id="subtitle2">Press the clay on to the fish mold</span></td></tr>
 </table>
 <div id="tab_yt" style="display:block">
     	<div class="video-responsive">
