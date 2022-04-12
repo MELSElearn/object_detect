@@ -67,6 +67,13 @@ def hello_world():
     if request_type_str == 'GET':
         return render_template('index.html', user_image = '')
     else:
+        mytype = request.form['selectype']
+        if mytype=='Phonics':
+            return render_template('index.html')
+        elif mytype=='FCD':
+            return render_template('index_fcd.html')
+        else:
+            return render_template('index.html')
 
         return render_template('index.html', user_image = '')
     
