@@ -64,17 +64,39 @@ table.a {
 <body>
 <center>
 <form method = "POST" id = "myForm">
+<!--	
+ <input type="radio" id="box" name="selectype" value="Phonics">
+	      <label for="html">Phonics</label><br>
+	      <input type="radio" id="css" name="selectype" value="FCD">
+	      <label for="css">FCD</label><br>
+	      <input type="submit">
+<br />
+<table>
+  
+<Tr>
+<td><input type="radio" id="Story" name="contenttype" value="Story">
+	      <label for="html">Story</label><br>
+	      <input type="radio" id="Toys" name="contenttype" value="Toys">
+	      <label for="css">Toys</label><br></td>
+</tr>
+</table>
+ -->
 <div id="scanpart" style="display:none">
 <table>
   
 <Tr>
 <td>
+
 <div id="container" style="display:block"><video autoplay id="videoElement"></video></div>
 <div id="container2" style="display:none"><canvas id="canvas" width="240" height="180"></canvas><br>
-<progress value="0" max="3" id="progressBar"></progress></div>
+</div>
+<center>
+<progress value="0" max="3" id="progressBar"></progress>
+</center>
 </td>
 </tr>
 </table>
+<br><Br>
 <input type="button" name="butajax2" id="butajax2" value="Scan And Play">
 <input type="button" name="butcancel" id="butcancel" value="Cancel">
 
@@ -116,7 +138,7 @@ click_button3.addEventListener('click', function() {
 	canvas.style.display="block";
    	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 	let image_data_url = canvas.toDataURL('image/jpeg');
-	canvas.style.display="none";
+	//canvas.style.display="none";
 	$.ajax({type:'POST',
 		url: '/api/checkanswer',
 		data:{
@@ -131,48 +153,50 @@ click_button3.addEventListener('click', function() {
 			{
 			}else
 			{
-				alert(data);
 				document.getElementById("container").style.display = "none";
 				document.getElementById("container2").style.display = "block";
 				var timeleft = 3;
 				var downloadTimer = setInterval(function(){
 				  if(timeleft <= 0){
 					clearInterval(downloadTimer);
+						if (data=="M2_1")
+					{
+						videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
+						videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+						document.getElementById('title').innerHTML="The Golden Beach";
+						document.getElementById('subtitle1').innerHTML="The frog";
+						document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
+					}else if(data=="M7_2")
+					{
+						videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
+						videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+						document.getElementById('title').innerHTML="The Garden";
+						document.getElementById('subtitle1').innerHTML="The maple leaf";
+						document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
+						myStopFunction();
+					}else if(data=="M8_2")
+					{
+						videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
+						videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+						document.getElementById('title').innerHTML="The Performance";
+						document.getElementById('subtitle1').innerHTML="Maracas";
+						document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
+	
+					}else
+					{
+						console.log("Item not recognised, please scan another item.");
+					}
+					
+					document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+					document.getElementById("scanpart").style.display = "none";
+					document.getElementById("contentpart").style.display = "block";
+					
+					
 				  }
 				  document.getElementById("progressBar").value = 3 - timeleft;
 				  timeleft -= 1;
 				}, 1000);
-				if (data=="M2_1")
-				{
-					videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
-					videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
-					document.getElementById('title').innerHTML="The Golden Beach";
-					document.getElementById('subtitle1').innerHTML="The frog";
-					document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
-				}else if(data=="M7_2")
-				{
-					videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
-					videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
-					document.getElementById('title').innerHTML="The Garden";
-					document.getElementById('subtitle1').innerHTML="The maple leaf";
-					document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
-					myStopFunction();
-				}else if(data=="M8_2")
-				{
-					videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
-					videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
-					document.getElementById('title').innerHTML="The Performance";
-					document.getElementById('subtitle1').innerHTML="Maracas";
-					document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
-
-				}else
-				{
-					console.log("Item not recognised, please scan another item.");
-				}
 				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
 			}
 			
 		}
