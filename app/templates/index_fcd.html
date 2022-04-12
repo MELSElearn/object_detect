@@ -118,7 +118,10 @@ var videolink2="";
 videolink1="https://www.youtube.com/embed/IAajIQD1u0w";
 videolink2="https://www.youtube.com/embed/yspuR0q3v9I";
 
-if (navigator.mediaDevices.getUserMedia) {
+var counter=0;
+const myInterval = setInterval(myTimer, 5000);
+
+	if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ video: true })
     .then(function (stream) {
       video.srcObject = stream;
@@ -223,81 +226,80 @@ function showscan()
 	document.getElementById("container").style.display = "block";
 	document.getElementById("container2").style.display = "none";
 	document.getElementById("progressBar").value = 0;
-	//const myInterval = setInterval(myTimer, 5000);
+	counter=1;
 }
 
 
 
 function myTimer() {
-  
-  canvas.style.display="block";
-   	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+  if (counter==1)
+  {
+	console.log("abc");
+	counter=0;
+	canvas.style.display="block";  
+	canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
 	let image_data_url = canvas.toDataURL('image/jpeg');
-	canvas.style.display="none";
 	$.ajax({type:'POST',
 		url: '/api/checkanswer',
 		data:{
 		  todo:image_data_url
 		},
 		success: function(data) {
-			
-			//https://www.youtube.com/embed/Cw12PDfFXxc - A
-			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
-			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
-			if (data=="NA")
-			{
-			}else
-			{
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				var timeleft = 3;
-				var downloadTimer = setInterval(function(){
-				  if(timeleft <= 0){
-					clearInterval(downloadTimer);
-				  }
-				  document.getElementById("progressBar").value = 3 - timeleft;
-				  timeleft -= 1;
-				}, 1000);
-				if (data=="M2_1")
-				{
-					videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
-					videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
-					document.getElementById('title').innerHTML="The Golden Beach";
-					document.getElementById('subtitle1').innerHTML="The frog";
-					document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
-				}else if(data=="M7_2")
-				{
-					videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
-					videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
-					document.getElementById('title').innerHTML="The Garden";
-					document.getElementById('subtitle1').innerHTML="The maple leaf";
-					document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
-					myStopFunction();
-				}else if(data=="M8_2")
-				{
-					videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
-					videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
-					document.getElementById('title').innerHTML="The Performance";
-					document.getElementById('subtitle1').innerHTML="Maracas";
-					document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
-
-				}else
-				{
-					console.log("Item not recognised, please scan another item.");
-				}
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-			}
-			
+			 if (data=="NA")
+			 {
+				 counter=1;
+			 }else
+			 {
+				 document.getElementById("container").style.display = "none";
+					document.getElementById("container2").style.display = "block";
+					var timeleft = 3;
+					var downloadTimer = setInterval(function(){
+					  if(timeleft <= 0){
+						clearInterval(downloadTimer);
+							if (data=="M2_1")
+						{
+							videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
+							videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+							document.getElementById('title').innerHTML="The Golden Beach";
+							document.getElementById('subtitle1').innerHTML="The frog";
+							document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
+						}else if(data=="M7_2")
+						{
+							videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
+							videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+							document.getElementById('title').innerHTML="The Garden";
+							document.getElementById('subtitle1').innerHTML="The maple leaf";
+							document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
+						}else if(data=="M8_2")
+						{
+							videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
+							videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+							document.getElementById('title').innerHTML="The Performance";
+							document.getElementById('subtitle1').innerHTML="Maracas";
+							document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
+		
+						}else
+						{
+							console.log("Item not recognised, please scan another item.");
+						}
+						
+						document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+						document.getElementById("scanpart").style.display = "none";
+						document.getElementById("contentpart").style.display = "block";
+						counter=0;
+						
+					  }
+					  document.getElementById("progressBar").value = 3 - timeleft;
+					  timeleft -= 1;
+					}, 1000);
+			 }
 		}
-	});
+	 });
+  }
+  
 }
 
-function myStopFunction() {
-  clearInterval(myInterval);
-}
+
 
 </script>
 <input type="hidden" name="txt64" id="txt64">
