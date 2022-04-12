@@ -87,12 +87,14 @@ table.a {
 <Tr>
 <td>
 <div id="container" style="display:block"><video autoplay id="videoElement"></video></div>
-<div id="container2" style="display:none"><canvas id="canvas" width="240" height="180"></canvas></div>
+<div id="container2" style="display:none"><canvas id="canvas" width="240" height="180"></canvas><br>
+<progress value="0" max="3" id="progressBar"></progress></div>
 </td>
 </tr>
 </table>
 <input type="button" name="butajax2" id="butajax2" value="Scan And Play">
 <input type="button" name="butcancel" id="butcancel" value="Cancel">
+
 <br>
 </div>
 
@@ -142,51 +144,59 @@ click_button3.addEventListener('click', function() {
 			//https://www.youtube.com/embed/Cw12PDfFXxc - A
 			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
 			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
-			if (data=="M2_1")
+			if (data=="NA")
 			{
-				videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
-				videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Golden Beach";
-				document.getElementById('subtitle1').innerHTML="The frog";
-				document.getElementById('subtitle2').innerHTML="The frogs are leaping";
-			}else if(data=="M7_2")
-			{
-				videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
-				videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Garden";
-				document.getElementById('subtitle1').innerHTML="The maple leaf";
-				document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
-			}else if(data=="M8_2")
-			{
-				videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
-				videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Performance";
-				document.getElementById('subtitle1').innerHTML="Maracas";
-				document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
 			}else
 			{
-				alert("Item not recognised, please scan another item.");
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				var timeleft = 3;
+				var downloadTimer = setInterval(function(){
+				  if(timeleft <= 0){
+					clearInterval(downloadTimer);
+				  }
+				  document.getElementById("progressBar").value = 3 - timeleft;
+				  timeleft -= 1;
+				}, 1000);
+				if (data=="M2_1")
+				{
+					videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
+					videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+					document.getElementById('title').innerHTML="The Golden Beach";
+					document.getElementById('subtitle1').innerHTML="The frog";
+					document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
+				}else if(data=="M7_2")
+				{
+					videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
+					videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+					document.getElementById('title').innerHTML="The Garden";
+					document.getElementById('subtitle1').innerHTML="The maple leaf";
+					document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
+					myStopFunction();
+				}else if(data=="M8_2")
+				{
+					videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
+					videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+					document.getElementById('title').innerHTML="The Performance";
+					document.getElementById('subtitle1').innerHTML="Maracas";
+					document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
+
+				}else
+				{
+					console.log("Item not recognised, please scan another item.");
+				}
+				
+				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+				document.getElementById("scanpart").style.display = "none";
+				document.getElementById("contentpart").style.display = "block";
 			}
+			
 		}
-	       });
+	});
+	
+	
+	
+	
 
 });
 function showstory()
@@ -205,7 +215,7 @@ function showscan()
 	document.getElementById("contentpart").style.display = "none";
 	document.getElementById("container").style.display = "block";
 	document.getElementById("container2").style.display = "none";
-	const myInterval = setInterval(myTimer, 5000);
+	//const myInterval = setInterval(myTimer, 5000);
 }
 
 
@@ -226,52 +236,53 @@ function myTimer() {
 			//https://www.youtube.com/embed/Cw12PDfFXxc - A
 			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
 			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
-			if (data=="M2_1")
+			if (data=="NA")
 			{
-				videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
-				videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Golden Beach";
-				document.getElementById('subtitle1').innerHTML="The frog";
-				document.getElementById('subtitle2').innerHTML="The frogs are leaping";
-				myStopFunction();
-			}else if(data=="M7_2")
-			{
-				videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
-				videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Garden";
-				document.getElementById('subtitle1').innerHTML="The maple leaf";
-				document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
-				myStopFunction();
-			}else if(data=="M8_2")
-			{
-				videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
-				videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
-				document.getElementById("container").style.display = "none";
-				document.getElementById("container2").style.display = "block";
-				
-				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
-				document.getElementById("scanpart").style.display = "none";
-				document.getElementById("contentpart").style.display = "block";
-				document.getElementById('title').innerHTML="The Performance";
-				document.getElementById('subtitle1').innerHTML="Maracas";
-				document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
-				myStopFunction();
 			}else
 			{
-				console.log("Item not recognised, please scan another item.");
+				document.getElementById("container").style.display = "none";
+				document.getElementById("container2").style.display = "block";
+				var timeleft = 3;
+				var downloadTimer = setInterval(function(){
+				  if(timeleft <= 0){
+					clearInterval(downloadTimer);
+				  }
+				  document.getElementById("progressBar").value = 3 - timeleft;
+				  timeleft -= 1;
+				}, 1000);
+				if (data=="M2_1")
+				{
+					videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
+					videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
+					document.getElementById('title').innerHTML="The Golden Beach";
+					document.getElementById('subtitle1').innerHTML="The frog";
+					document.getElementById('subtitle2').innerHTML="The frogs are leaping";	
+				}else if(data=="M7_2")
+				{
+					videolink1="https://www.youtube.com/embed/FEldwXKxCmI";
+					videolink2="https://www.youtube.com/embed/kWGqKKIsSoU";
+					document.getElementById('title').innerHTML="The Garden";
+					document.getElementById('subtitle1').innerHTML="The maple leaf";
+					document.getElementById('subtitle2').innerHTML="Decorating the maple leaf";
+					myStopFunction();
+				}else if(data=="M8_2")
+				{
+					videolink1="https://www.youtube.com/embed/mhfEjBpULzA";
+					videolink2="https://www.youtube.com/embed/CyzkUa1jLG8";
+					document.getElementById('title').innerHTML="The Performance";
+					document.getElementById('subtitle1').innerHTML="Maracas";
+					document.getElementById('subtitle2').innerHTML="The finger castanat & maracas";
+
+				}else
+				{
+					console.log("Item not recognised, please scan another item.");
+				}
+				
+				document.getElementById("typlayer").src=videolink1 + "?autoplay=1";
+				document.getElementById("scanpart").style.display = "none";
+				document.getElementById("contentpart").style.display = "block";
 			}
+			
 		}
 	});
 }
