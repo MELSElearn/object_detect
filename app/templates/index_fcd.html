@@ -97,7 +97,7 @@ table.a {
 </tr>
 </table>
 <br><Br>
-<input type="button" name="butajax2" id="butajax2" value="Scan And Play">
+<!--<input type="button" name="butajax2" id="butajax2" value="Scan And Play">-->
 <input type="button" name="butcancel" id="butcancel" value="Cancel">
 
 <br>
@@ -132,6 +132,7 @@ const myInterval = setInterval(myTimer, 5000);
 }
 cancel_but.addEventListener('click', function() 
 	{
+	counter=0;
 	document.getElementById("scanpart").style.display = "none";
 	document.getElementById("contentpart").style.display = "block";
 	
