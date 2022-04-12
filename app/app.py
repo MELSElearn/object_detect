@@ -57,8 +57,9 @@ class Classifier:
 
         return list(prediction[0]), indexVal
 
-maskClassifier = Classifier('app/keras_model.h5', 'app/labels.txt')
+#maskClassifier = Classifier('app/keras_model.h5', 'app/labels.txt')
 
+maskClassifier = Classifier('app/fcd.h5', 'app/fcd.txt')
 app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
@@ -86,8 +87,8 @@ def check_answer():
     img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
     
     crop_img = img[15:165, 45:195]
-    items =['A','B','NA']
-    
+    items =['M2_1','M7_2','M8_2','NA']
+
     prediction,index = maskClassifier.getPrediction(crop_img, scale=1, draw= False) 
     
     cv2.putText(crop_img, str(items[index]), (50, 50), cv2.FONT_HERSHEY_PLAIN, 2, (0,0,0), 1)
