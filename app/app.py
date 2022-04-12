@@ -65,11 +65,11 @@ app = Flask(__name__)
 def hello_world():
     request_type_str = request.method
     if request_type_str == 'GET':
-        return render_template('index.html', user_image = '')
+        return render_template('index_fcd.html', user_image = '')
     else:
         mytype = request.form['selectype']
         if mytype=='Phonics':
-            return render_template('index.html')
+            return render_template('index_fcd.html')
         elif mytype=='FCD':
             return render_template('index_fcd.html')
         else:
