@@ -158,7 +158,13 @@ cancel_but.addEventListener('click', function()
 	counter=0;
 	document.getElementById("scanpart").style.display = "none";
 	document.getElementById("contentpart").style.display = "block";
-	
+	if (isMobile == true)
+	{
+		document.getElementById("typlayer").width = 360；
+	}else
+	{
+		document.getElementById("typlayer").width = 800；
+	}
 	}
 )
 click_button3.addEventListener('click', function() {
