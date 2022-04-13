@@ -158,7 +158,17 @@ cancel_but.addEventListener('click', function()
 	counter=0;
 	document.getElementById("scanpart").style.display = "none";
 	document.getElementById("contentpart").style.display = "block";
-
+	if (isMobile == true)
+		{
+			document.getElementById("showcontent_table").width = "100%";
+			document.getElementById("typlayer").width = "320";
+			document.getElementById("typlayer").height = "240";
+		}else
+		{
+			document.getElementById("showcontent_table").width = "50%";
+			document.getElementById("typlayer").width = "800";
+			document.getElementById("typlayer").height = "600";
+		}
 	}
 )
 click_button3.addEventListener('click', function() {
