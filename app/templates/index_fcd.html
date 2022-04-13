@@ -158,15 +158,7 @@ cancel_but.addEventListener('click', function()
 	counter=0;
 	document.getElementById("scanpart").style.display = "none";
 	document.getElementById("contentpart").style.display = "block";
-	if (isMobile == true)
-	{
-		document.getElementById("typlayer").width = 360；
-		document.getElementById("showcontent_table").width = "100%";
-	}else
-	{
-		document.getElementById("typlayer").width = 800；
-		document.getElementById("showcontent_table").width = "60%";
-	}
+
 	}
 )
 click_button3.addEventListener('click', function() {
@@ -225,15 +217,6 @@ click_button3.addEventListener('click', function() {
 					document.getElementById("scanpart").style.display = "none";
 					document.getElementById("contentpart").style.display = "block";
 					document.getElementById("progressBar").value = 3;
-					if (isMobile == true)
-					{
-						document.getElementById("typlayer").width = 360；
-						document.getElementById("showcontent_table").width = "100%";
-					}else
-					{
-						document.getElementById("typlayer").width = 800；
-						document.getElementById("showcontent_table").width = "60%";
-					}
 					
 				  }
 				  document.getElementById("progressBar").value = 3 - timeleft;
