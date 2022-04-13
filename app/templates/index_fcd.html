@@ -311,6 +311,15 @@ function myTimer() {
 						document.getElementById("scanpart").style.display = "none";
 						document.getElementById("contentpart").style.display = "block";
 						counter=0;
+						if (isMobile == true)
+						{
+							document.getElementById("showcontent_table").width = "100%";
+							document.getElementById("typlayer").width = "320";
+						}else
+						{
+							document.getElementById("showcontent_table").width = "50%";
+							document.getElementById("typlayer").width = "800";
+						}
 						
 					  }
 					  document.getElementById("progressBar").value = 3 - timeleft;
