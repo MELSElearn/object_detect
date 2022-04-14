@@ -98,7 +98,7 @@ table.a {
 </tr>
 </table>
 <br><Br>
-<!--<input type="button" name="butajax2" id="butajax2" value="Scan And Play">-->
+<input type="button" name="butajax2" id="butajax2" value="Scan And Play">
 <input type="button" name="butcancel" id="butcancel" value="Cancel">
 
 <br>
@@ -120,7 +120,7 @@ videolink1="https://www.youtube.com/embed/IAajIQD1u0w";
 videolink2="https://www.youtube.com/embed/yspuR0q3v9I";
 
 var counter=1;
-const myInterval = setInterval(myTimer, 5000);
+//const myInterval = setInterval(myTimer, 5000);
 
 var isMobile = false; //initiate as false
 // device detection
@@ -182,10 +182,7 @@ click_button3.addEventListener('click', function() {
 		  todo:image_data_url
 		},
 		success: function(data) {
-			
-			//https://www.youtube.com/embed/Cw12PDfFXxc - A
-			//https://www.youtube.com/embed/0A-ZEDl4zGo - B
-			//document.getElementById("mypic").src="data:image/jpeg;base64,"+data;
+
 			if (data=="NA")
 			{
 			}else
@@ -196,7 +193,7 @@ click_button3.addEventListener('click', function() {
 				var downloadTimer = setInterval(function(){
 				  if(timeleft <= 0){
 					clearInterval(downloadTimer);
-						if (data=="M2_1")
+					if (data=="M2_1")
 					{
 						videolink1="https://www.youtube.com/embed/6DC3EjjKkc4";
 						videolink2="https://www.youtube.com/embed/-Ax2yCETXkM";
