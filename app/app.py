@@ -100,6 +100,6 @@ def check_answer():
     im_bytes = im_arr.tobytes()
     im_b64 = b64encode(im_bytes).decode("utf-8")
     if prediction[index]>0.9:
-        return str(prediction[index])
+        return str(items[index])
     else:
         return str(items[3])
